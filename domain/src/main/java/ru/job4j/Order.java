@@ -17,8 +17,8 @@ public class Order {
     private int amount;
     private String address;
     private List<Dish> dishes;
-    private Client client;
+    private Customer customer;
     private Courier courier;
-    private Payment payment;
+    private Status status;
     private LocalDateTime created = LocalDateTime.now();
 }
