@@ -3,6 +3,7 @@ package ru.job4j.admin.repository;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
+@PropertySource("classpath:application.properties")
 public class DishAPIRepository {
 
     @Value("${api-url}")

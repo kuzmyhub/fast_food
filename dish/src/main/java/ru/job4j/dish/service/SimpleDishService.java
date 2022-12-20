@@ -31,6 +31,11 @@ public class SimpleDishService implements DishService {
     }
 
     public List<Dish> findAll() {
-        return dishRepository.findAll();
+        Dish dish = new Dish();
+        dish.setId(1);
+        dish.setCost(250);
+        dish.setName("Картошечка");
+        /*return dishRepository.findAll();*/
+        return List.of(dish);
     }
 }

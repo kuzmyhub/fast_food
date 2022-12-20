@@ -25,20 +25,19 @@
     </nav>
 
     <div>
-        <table class="table_center" width="600" border="0">
+        <table style="margin: auto" width="600" border="0">
             <thead>
             <tr>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Фото</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">№</th>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Блюдо</th>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Добавить</th>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Удалить</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Стоимость</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="dish: ${dishes}">
+                <td height="165px" th:text="${dish.id}" style="border-bottom: 3px solid #808080;"></td>
                 <td height="165px" th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
-                <td height="165px" th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
-                <td height="165px" th:if="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
+                <td height="165px" th:text="${dish.cost}" style="border-bottom: 3px solid #808080;"></td>
             </tr>
             </tbody>
         </table>
