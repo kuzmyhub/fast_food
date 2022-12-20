@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.domain.model.Customer;
 import ru.job4j.domain.model.Order;
+import ru.job4j.order.service.KafkaProducerService;
 import ru.job4j.order.service.OrderService;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
 public class OrderController {
 
     private OrderService simpleOrderService;
+    private KafkaProducerService simpleKafkaProducerService;
 
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
@@ -36,6 +38,7 @@ public class OrderController {
                                 )
                         )
                 );
+        simpleKafkaProducerService.send(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 

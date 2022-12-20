@@ -1,4 +1,4 @@
-package ru.job4j.order;
+package ru.job4j.notification;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"ru.job4j.domain.model", "ru.job4j.order"})
+@ComponentScan(basePackages = {"ru.job4j.domain.model", "ru.job4j.notification"})
 @EntityScan(basePackages = {"ru.job4j.domain.model"})
-public class OrderMain {
+public class NotificationMain {
     public static void main(String[] args) {
-        SpringApplication.run(OrderMain.class, args);
+        SpringApplication.run(NotificationMain.class, args);
     }
 }

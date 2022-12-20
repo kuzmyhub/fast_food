@@ -20,7 +20,11 @@ public class SimpleOrderService implements OrderService {
     }
 
     public Optional<Order> findOrderById(int id) {
-        return orderRepository.findById(id);
+        /*return orderRepository.findById(id);*/
+        Order order = new Order();
+        order.setId(1);
+        order.setAmount(3000);
+        return Optional.of(order);
     }
 
     public List<Order> findAllOrdersByCustomer(Customer customer) {
