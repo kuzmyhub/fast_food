@@ -4,5 +4,7 @@ import ru.job4j.domain.model.Order;
 
 public interface KafkaProducerService {
 
-    public void send(Order order);
+    void send(Order order);
+
+    void sendToKitchen(Order order);
 }
