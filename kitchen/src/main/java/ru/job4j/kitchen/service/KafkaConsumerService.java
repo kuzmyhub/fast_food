@@ -5,5 +5,5 @@ import ru.job4j.domain.model.Order;
 
 public interface KafkaConsumerService {
 
-    void onApiCall(ConsumerRecord<Integer, Order> input);
+    void onApiCall(ConsumerRecord<Integer, Order> input) throws InterruptedException;
 }

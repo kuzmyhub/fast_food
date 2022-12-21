@@ -13,7 +13,6 @@ import ru.job4j.domain.model.Order;
 public class SimpleKafkaProducerService implements KafkaProducerService {
 
     private KafkaTemplate<Integer, Order> template;
-    private OrderQueueService simpleOrderQueueService;
 
     public void send(Order order) {
         System.out.println("пре" + order);

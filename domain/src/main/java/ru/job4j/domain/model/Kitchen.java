@@ -21,5 +21,5 @@ public class Kitchen {
     private int id;
     private String name;
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Order> orders;
+    private List<Dish> dishes;
 }

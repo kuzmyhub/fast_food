@@ -11,12 +11,10 @@ import ru.job4j.domain.model.Order;
 @AllArgsConstructor
 public class SimpleKafkaConsumerService implements KafkaConsumerService {
 
-    private OrderQueueService simpleOrderQueueService;
     private OrderService simpleOrderService;
 
     @KafkaListener(topics = {"orderNotification"})
     public void onApiCall(ConsumerRecord<Integer, Order> input) {
-        Order order = simpleOrderQueueService.poll();
         System.out.println("заказ принят в заказе " + input.value());
     }
 }
