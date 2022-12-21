@@ -27,7 +27,6 @@ public class OrderController {
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
         simpleKafkaProducerService.sendToKitchen(order);
-        /*Order order1 = simpleOrderService.createOrder(order);*/
         return new ResponseEntity<>(
                 order,
                 HttpStatus.OK

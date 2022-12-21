@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.job4j.domain.model.Dish;
 import ru.job4j.domain.model.Kitchen;
 import ru.job4j.domain.model.Order;
+import ru.job4j.domain.model.Status;
 import ru.job4j.kitchen.repository.DishRepository;
 import ru.job4j.kitchen.repository.MemDishRepository;
 
@@ -26,19 +27,22 @@ public class SimpleDishService implements DishService {
     }
 
     public void acceptOrder(Order order) throws InterruptedException {
-        /*List<Dish> kitchenDishes = memDishRepository.findAll();
+        List<Dish> kitchenDishes = memDishRepository.findAll();
         List<Dish> orderDishes = order.getDishes();
-        if (kitchenDishes == null || !kitchenDishes.containsAll(orderDishes)) {
-            order.getStatus().setCondition("Отмена");
+        Status status = new Status();
+        if (!kitchenDishes.containsAll(orderDishes)) {
+            status.setCondition("Отмена заказа");
+            order.setStatus(status);
             simpleKafkaProducerService.sendToOrder(order);
             return;
         }
+        status.setCondition("Заказ приготовлен");
+        order.setStatus(status);
         makeOrder();
-        order.getStatus().setCondition("Готов к выдаче");*/
         simpleKafkaProducerService.sendToOrder(order);
     }
 
     public void makeOrder() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(60000);
     }
 }

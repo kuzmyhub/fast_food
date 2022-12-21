@@ -15,6 +15,8 @@ public class SimpleKafkaConsumerService implements KafkaConsumerService {
 
     @KafkaListener(topics = {"orderNotification"})
     public void onApiCall(ConsumerRecord<Integer, Order> input) {
-        System.out.println("заказ принят в заказе " + input.value());
+        Order order = input.value();
+        System.out.println("Заказ принят с кухни " + order);
+        simpleOrderService.createOrder(order);
     }
 }

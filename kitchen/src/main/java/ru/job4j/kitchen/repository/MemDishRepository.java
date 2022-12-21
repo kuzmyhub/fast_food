@@ -14,6 +14,14 @@ public class MemDishRepository {
 
     private final AtomicInteger atomicInteger = new AtomicInteger(1);
 
+    public MemDishRepository() {
+        Dish dish = new Dish();
+        dish.setId(1);
+        dish.setName("Картошка");
+        dish.setCost(500);
+        add(dish);
+    }
+
     public Dish add(Dish dish) {
         dish.setId(atomicInteger.getAndIncrement());
         dishes.put(dish.getId(), dish);
