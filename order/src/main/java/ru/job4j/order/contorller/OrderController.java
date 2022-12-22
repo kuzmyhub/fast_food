@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.job4j.domain.model.Customer;
 import ru.job4j.domain.model.Order;
-import ru.job4j.order.repository.MemOrderRepository;
-import ru.job4j.order.service.KafkaConsumerService;
 import ru.job4j.order.service.KafkaProducerService;
 import ru.job4j.order.service.OrderService;
 
@@ -21,8 +19,6 @@ public class OrderController {
 
     private OrderService simpleOrderService;
     private KafkaProducerService simpleKafkaProducerService;
-    private KafkaConsumerService simpleKafkaConsumerService;
-    private MemOrderRepository memOrderRepository;
 
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {

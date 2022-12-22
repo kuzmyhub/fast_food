@@ -1,7 +1,6 @@
 package ru.job4j.notification.service;
 
 import lombok.AllArgsConstructor;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.stereotype.Service;
 import ru.job4j.domain.model.Notification;
 import ru.job4j.domain.model.Order;

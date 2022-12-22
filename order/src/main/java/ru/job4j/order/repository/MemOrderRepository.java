@@ -15,13 +15,13 @@ public class MemOrderRepository {
 
     private final AtomicInteger atomicInteger = new AtomicInteger(1);
 
-    private Order add(Order order) {
+    public Order add(Order order) {
         order.setId(atomicInteger.getAndIncrement());
         orders.put(order.getId(), order);
         return order;
     }
 
-    private boolean delete(int id) {
+    public boolean delete(int id) {
         Optional<Order> optionalOrder = Optional.ofNullable(orders.remove(id));
         return optionalOrder.isPresent();
     }
