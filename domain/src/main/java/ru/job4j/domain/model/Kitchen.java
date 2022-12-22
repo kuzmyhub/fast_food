@@ -15,6 +15,7 @@ import java.util.List;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
+/*отказаться от использования этого класса*/
 public class Kitchen {
     @Id
     @EqualsAndHashCode.Include

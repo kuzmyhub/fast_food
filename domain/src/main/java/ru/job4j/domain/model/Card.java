@@ -18,7 +18,7 @@ public class Card {
     @Id
     @EqualsAndHashCode.Include
     private int id;
-    private int bonuses;
+    private double discount;
     @ManyToOne(cascade = CascadeType.ALL)
     private Customer customer;
 }
