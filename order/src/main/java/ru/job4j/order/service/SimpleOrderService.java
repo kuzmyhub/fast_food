@@ -14,8 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SimpleOrderService implements OrderService {
 
-    private OrderRepository orderRepository;
-    private MemOrderRepository memOrderRepository;
+    private OrderRepository memOrderRepository;
 
     public Order createOrder(Order order) {
         /*return orderRepository.save(order);*/
@@ -31,6 +30,7 @@ public class SimpleOrderService implements OrderService {
     }
 
     public List<Order> findAllOrdersByCustomer(Customer customer) {
-        return orderRepository.findAllByCustomer(customer);
+        /*return orderRepository.findAllByCustomer(customer);*/
+        return memOrderRepository.findAllByCustomer(customer);
     }
 }

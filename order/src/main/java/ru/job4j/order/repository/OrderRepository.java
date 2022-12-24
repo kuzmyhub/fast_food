@@ -1,13 +1,17 @@
 package ru.job4j.order.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 import ru.job4j.domain.model.Customer;
 import ru.job4j.domain.model.Order;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-@Repository
-public interface OrderRepository extends CrudRepository<Order, Integer> {
+public interface OrderRepository {
+    Order add(Order order);
+
+    boolean delete(int id);
+
     List<Order> findAllByCustomer(Customer customer);
+
 }

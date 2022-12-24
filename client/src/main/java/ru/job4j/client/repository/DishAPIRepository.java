@@ -11,14 +11,14 @@ import ru.job4j.domain.model.Dish;
 import java.util.List;
 
 @Repository
-//@RequiredArgsConstructor
+/*@RequiredArgsConstructor*/
 @PropertySource("classpath:application.properties")
 public class DishAPIRepository {
 
     @Value("${api-url}")
     private String url;
 
-    //@NonNull
+    /*@NonNull*/
     private final RestTemplate client;
 
     public DishAPIRepository(RestTemplate client) {

@@ -3,11 +3,12 @@ package ru.job4j.order.contorller;
 import lombok.AllArgsConstructor;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import ru.job4j.domain.model.Order;
 import ru.job4j.order.service.OrderService;
 
-@Service
+@Controller
 @AllArgsConstructor
 public class KafkaConsumerController {
 
