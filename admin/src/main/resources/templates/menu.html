@@ -21,30 +21,23 @@
 <div class="container pt-3" style="text-align: center;">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" th:href="@{/client}">Быстро и в точку</a>
+        <a class="navbar-brand" th:href="@{/home}">Быстро и в точку</a>
     </nav>
 
-    <div style="text-align: center; padding-top: 20px">
-        <img th:src="@{/images/logo.png}" alt="poster" width="592">
-    </div>
-
-    <div style="text-align: center; padding-top: 20px">
-        <table style="margin: auto">
+    <div>
+        <table style="margin: auto" width="600" border="0">
+            <thead>
+            <tr>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">№</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Блюдо</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Стоимость</th>
+            </tr>
+            </thead>
             <tbody>
-            <tr align="center">
-                <a th:href="@{/client/dish/menu}">
-                    <img th:src="@{/images/menu.png}" height="40">
-                </a>
-            </tr>
-            <tr align="center">
-                <a th:href="@{/client/order/history}">
-                    <img th:src="@{/images/orderHistory.png}" height="40">
-                </a>
-            </tr>
-            <tr align="center">
-                <a th:href="@{/client/delivery/terms}">
-                    <img th:src="@{/images/deliveryTerms.png}" height="40">
-                </a>
+            <tr th:each="dish: ${dishes}">
+                <td height="165px" th:text="${dish.id}" style="border-bottom: 3px solid #808080;"></td>
+                <td height="165px" th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
+                <td height="165px" th:text="${dish.cost}" style="border-bottom: 3px solid #808080;"></td>
             </tr>
             </tbody>
         </table>

@@ -10,13 +10,12 @@ import ru.job4j.admin.service.DishService;
 @Controller
 @RequestMapping("/admin")
 @AllArgsConstructor
-public class DishController {
+public class AdminController {
 
     private DishService simpleDishService;
 
-    @GetMapping("/menu")
-    public String menu(Model model) {
-        model.addAttribute("dishes", simpleDishService.findAll());
-        return "menu";
+    @GetMapping
+    public String home(Model model) {
+        return "home";
     }
 }

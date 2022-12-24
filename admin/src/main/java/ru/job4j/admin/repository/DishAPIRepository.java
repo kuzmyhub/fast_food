@@ -19,7 +19,7 @@ import java.util.List;
 @PropertySource("classpath:application.properties")
 public class DishAPIRepository {
 
-    @Value("${api-url}")
+    @Value("${dish-api-url}")
     private String url;
 
     @NonNull
