@@ -20,36 +20,32 @@
 <body>
 <div class="container pt-3" style="text-align: center;">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="color: #c0ba78">
         <a class="navbar-brand" th:href="@{/client}">Быстро и в точку</a>
         <a class="navbar-brand" th:href="@{/client/dish/menu}">Меню</a>
         <a class="navbar-brand" th:href="@{/client/basket}">Корзина</a>
     </nav>
 
-    <div style="text-align: center; padding-top: 20px">
-        <img th:src="@{/images/logo.png}" alt="poster" width="592">
+    <div style="padding-top: 20px">
+        <span><b style="font-size: 20px">Заполните адрес доставки</b></span>
     </div>
 
-    <div style="text-align: center; padding-top: 20px">
-        <table style="margin: auto">
-            <tbody>
-            <tr align="center">
-                <a th:href="@{/client/dish/menu}">
-                    <img th:src="@{/images/menu.png}" height="40">
-                </a>
-            </tr>
-            <tr align="center">
-                <a th:href="@{/client/order/history}">
-                    <img th:src="@{/images/orderHistory.png}" height="40">
-                </a>
-            </tr>
-            <tr align="center">
-                <a th:href="@{/client/delivery/terms}">
-                    <img th:src="@{/images/deliveryTerms.png}" height="40">
-                </a>
-            </tr>
-            </tbody>
-        </table>
+    <div style="padding-top: 20px" class="card-body">
+        <form th:action="@{/createOrder}" method="post">
+            <div class="form-group">
+                <label><b>Улица</b></label>
+                <input type="text" class="form-control" name="street" id="street">
+                <label style="padding-top: 20px"><b>Дом</b></label>
+                <input type="text" class="form-control" name="house" id="house">
+                <label style="padding-top: 20px"><b>Подъезд</b></label>
+                <input type="text" class="form-control" name="entrance" id="entrance">
+                <label style="padding-top: 20px"><b>Этаж</b></label>
+                <input type="text" class="form-control" name="flor" id="flor">
+                <label style="padding-top: 20px"><b>Квартира</b></label>
+                <input type="text" class="form-control" name="apartment" id="apartment">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">OK</button>
+        </form>
     </div>
 
 </div>

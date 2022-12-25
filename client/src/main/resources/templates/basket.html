@@ -27,7 +27,7 @@
     </nav>
 
     <div style="padding-top: 20px">
-        <span><b style="color: #ff4d00; font-size: 25px">Авторизуйтесь чтобы сделать заказ</b></span>
+        <span><b style="color: #ff4d00; font-size: 25px" th:text="'Сумма заказа ' + ${amount} + ' руб.'"></b></span>
     </div>
 
     <div style="padding-top: 20px">
@@ -35,30 +35,28 @@
             <thead>
             <tr>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Наименование</th>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Описание</th>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Стоимость</th>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Фото</th>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Добавить в корзину</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="dish: ${dishes}" style="height: 220px">
-                <td height="200px" th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
-                <td height="200px" th:text="${dish.description}" style="border-bottom: 3px solid #808080;"></td>
-                <td height="200px" th:text="${dish.cost} + ' ' + руб." style="border-bottom: 3px solid #808080;"></td>
+            <tr th:each="dish: ${dishes}" style="height: 90px">
+                <td th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
+                <td th:text="${dish.cost} + ' ' + руб." style="border-bottom: 3px solid #808080;"></td>
                 <td style="border-bottom: 3px solid #808080;">
-                    <img width="200" th:src="@{|/client/dish/photo/${dish.id}|}">
-                </td>
-                <td style="border-bottom: 3px solid #808080;">
-                    <form th:action="@{/client/basket/addToBasket}" method="post">
-                        <button type="submit" name="id" th:value="${dish.id}" class="btn btn-primary">
-                            +
-                        </button>
-                    </form>
+                    <img width="80" th:src="@{|/client/dish/photo/${dish.id}|}">
                 </td>
             </tr>
             </tbody>
         </table>
+    </div>
+
+    <div style="padding-top: 20px; padding-bottom: 20px">
+        <form th:action="@{/orderForm}">
+            <button type="submit" class="btn btn-primary">
+                Оформить заказ
+            </button>
+        </form>
     </div>
 
 </div>

@@ -31,8 +31,7 @@ public class DishController {
                 orElseThrow(
                         () -> new ResponseStatusException(
                                 HttpStatus.NOT_FOUND,
-                                String.format("Dish number %s not found", id
-                                )
+                                String.format("Dish number %s not found", id)
                         )
                 );
         return new ResponseEntity<>(
@@ -47,8 +46,7 @@ public class DishController {
                 orElseThrow(
                         () -> new ResponseStatusException(
                                 HttpStatus.NOT_FOUND,
-                                String.format("Dish name %s not found", name
-                                )
+                                String.format("Dish name %s not found", name)
                         )
                 );
         return new ResponseEntity<>(

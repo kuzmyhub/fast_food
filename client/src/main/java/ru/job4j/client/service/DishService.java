@@ -9,5 +9,9 @@ public interface DishService {
 
     Optional<Dish> findDishById(int id);
 
-    public List<Dish> findAll();
+    List<Dish> findAll();
+
+    List<Dish> getBasketDishes(String ids);
+
+    int getDishAmount(List<Dish> dishes);
 }

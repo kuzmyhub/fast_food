@@ -4,16 +4,20 @@ import lombok.AllArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.client.service.DishService;
 import ru.job4j.domain.model.Dish;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -34,7 +38,9 @@ public class DishController {
     public ResponseEntity<Resource> download(@PathVariable("id") Integer id) {
         Optional<Dish> optionalDish = simpleDishService.findDishById(id);
         if (optionalDish.isEmpty()) {
-            System.out.println("no");
+            throw new NoSuchElementException(
+                    String.format("Dish number %s not found", id)
+            );
         }
         return ResponseEntity.ok()
                 .headers(new HttpHeaders())
