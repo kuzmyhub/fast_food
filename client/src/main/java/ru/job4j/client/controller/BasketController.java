@@ -8,8 +8,10 @@ import ru.job4j.client.service.DishService;
 import ru.job4j.domain.model.Dish;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/client/basket")
@@ -25,6 +27,7 @@ public class BasketController {
         Integer amount = simpleDishService.getDishAmount(dishes);
         model.addAttribute("dishes", dishes);
         model.addAttribute("amount", amount);
+        model.addAttribute("dishIds", ids);
         return "basket";
     }
 
@@ -46,5 +49,6 @@ public class BasketController {
         model.addAttribute("dishes", simpleDishService.findAll());
         return "redirect:/client/dish/menu";
     }
+
 }
 

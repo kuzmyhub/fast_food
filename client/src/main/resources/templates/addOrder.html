@@ -31,7 +31,8 @@
     </div>
 
     <div style="padding-top: 20px" class="card-body">
-        <form th:action="@{/createOrder}" method="post">
+        <form th:action="@{/client/order/createOrder}" method="post">
+            <input type="hidden" name="dishIds" th:value="${dishIds}">
             <div class="form-group">
                 <label><b>Улица</b></label>
                 <input type="text" class="form-control" name="street" id="street">

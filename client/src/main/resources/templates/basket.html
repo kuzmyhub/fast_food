@@ -52,7 +52,8 @@
     </div>
 
     <div style="padding-top: 20px; padding-bottom: 20px">
-        <form th:action="@{/orderForm}">
+        <form th:action="@{/client/order/orderForm}">
+            <input type="hidden" name="dishIds" th:value="${dishIds}">
             <button type="submit" class="btn btn-primary">
                 Оформить заказ
             </button>
