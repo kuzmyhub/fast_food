@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.job4j.client.service.PrincipalService;
+import ru.job4j.client.service.CustomerService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +20,7 @@ import java.security.Principal;
 @AllArgsConstructor
 public class LoginController {
 
-    private PrincipalService simplePrincipalService;
+    private CustomerService simpleCustomerService;
 
     @GetMapping("/login")
     public String loginPage(@RequestParam(value = "error", required = false) String error,
@@ -35,7 +35,7 @@ public class LoginController {
         }
         model.addAttribute("errorMessage", errorMessage);
         model.addAttribute("username",
-                simplePrincipalService.getUsername(principal));
+                simpleCustomerService.getUsername(principal));
         return "login";
     }
 

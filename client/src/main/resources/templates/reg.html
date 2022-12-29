@@ -43,14 +43,18 @@
 
     <form th:action="@{/client/reg}" method="POST">
       <div>
-        <label for="username">Логин</label>
+        <label style="padding-top: 20px" for="username"><b>Логин</b></label>
         <input type="text" class="form-control" name="username" id="username">
       </div>
       <div>
-        <label for="password">Пароль</label>
+        <label style="padding-top: 20px" for="username"><b>Номер телефона</b></label>
+        <input value="в формате 88005553535" type="text" class="form-control" name="phone" id="phone">
+      </div>
+      <div>
+        <label style="padding-top: 20px" for="password"><b>Пароль</b></label>
         <input type="text" class="form-control" name="password" id="password">
       </div>
-      <button type="submit" class="btn btn-primary mt-3">Войти</button>
+      <button type="submit" class="btn btn-primary mt-3">Регистрация</button>
     </form>
 
   </div>

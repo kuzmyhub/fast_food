@@ -5,8 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.job4j.client.service.DishService;
-import ru.job4j.client.service.PrincipalService;
+import ru.job4j.client.service.CustomerService;
 
 import java.security.Principal;
 
@@ -15,12 +14,12 @@ import java.security.Principal;
 @AllArgsConstructor
 public class ClientController {
 
-    private PrincipalService simplePrincipalService;
+    private CustomerService simpleCustomerService;
 
     @GetMapping
     public String home(Model model, Principal principal) {
         model.addAttribute("username",
-                simplePrincipalService.getUsername(principal));
+                simpleCustomerService.getUsername(principal));
         return "home";
     }
 }

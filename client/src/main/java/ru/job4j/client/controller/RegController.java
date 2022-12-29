@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.client.repository.AuthorityRepository;
-import ru.job4j.client.repository.UserRepository;
-import ru.job4j.client.service.PrincipalService;
-import ru.job4j.domain.model.User;
+import ru.job4j.client.repository.CustomerRepository;
+import ru.job4j.client.service.CustomerService;
+import ru.job4j.domain.model.Customer;
 
 import java.security.Principal;
 
@@ -21,17 +21,17 @@ import java.security.Principal;
 public class RegController {
 
     private final PasswordEncoder encoder;
-    private final UserRepository users;
-    private final AuthorityRepository authorities;
-    private PrincipalService simplePrincipalService;
+    private final CustomerRepository customerRepository;
+    private final AuthorityRepository authorityRepository;
+    private CustomerService simpleCustomerService;
 
     @PostMapping
-    public String regSave(@ModelAttribute User user, Model model, Principal principal) {
-        user.setEnabled(true);
-        user.setPassword(encoder.encode(user.getPassword()));
-        user.setAuthority(authorities.findByAuthority("ROLE_USER"));
+    public String regSave(@ModelAttribute Customer customer, Model model) {
+        customer.setEnabled(true);
+        customer.setPassword(encoder.encode(customer.getPassword()));
+        customer.setAuthority(authorityRepository.findByAuthority("ROLE_USER"));
         try {
-            users.save(user);
+            customerRepository.save(customer);
         } catch (Exception e) {
             model.addAttribute("errorMessage",
                     "Username already exists");
@@ -43,7 +43,7 @@ public class RegController {
     @GetMapping
     public String regPage(Model model, Principal principal) {
         model.addAttribute("username",
-                simplePrincipalService.getUsername(principal));
+                simpleCustomerService.getUsername(principal));
         return "reg";
     }
 }

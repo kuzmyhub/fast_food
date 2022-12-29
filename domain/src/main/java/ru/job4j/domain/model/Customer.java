@@ -1,20 +1,30 @@
 package ru.job4j.domain.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
 @Entity
+@Table(name = "customers")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
-    private String phoneNumber;
+    private String password;
+    private String username;
+    private String phone;
+
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
+
+    private boolean enabled;
 }

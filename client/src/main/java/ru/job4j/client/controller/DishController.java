@@ -4,22 +4,16 @@ import lombok.AllArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.client.service.DishService;
-import ru.job4j.client.service.PrincipalService;
+import ru.job4j.client.service.CustomerService;
 import ru.job4j.domain.model.Dish;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -29,13 +23,13 @@ import java.util.Optional;
 public class DishController {
 
     private DishService simpleDishService;
-    private PrincipalService simplePrincipalService;
+    private CustomerService simpleCustomerService;
 
     @GetMapping("/menu")
     public String menu(Model model, Principal principal) {
         model.addAttribute("dishes", simpleDishService.findAll());
         model.addAttribute("username",
-                simplePrincipalService.getUsername(principal));
+                simpleCustomerService.getUsername(principal));
         return "menu";
     }
 

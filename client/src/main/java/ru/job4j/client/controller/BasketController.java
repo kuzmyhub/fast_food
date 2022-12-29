@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.client.service.DishService;
-import ru.job4j.client.service.PrincipalService;
+import ru.job4j.client.service.CustomerService;
 import ru.job4j.domain.model.Dish;
 
 import javax.servlet.http.Cookie;
@@ -19,7 +19,7 @@ import java.util.*;
 public class BasketController {
 
     private DishService simpleDishService;
-    private PrincipalService simplePrincipalService;
+    private CustomerService simpleCustomerService;
 
     @GetMapping
     public String basket(Model model, Principal principal,
@@ -30,7 +30,7 @@ public class BasketController {
         model.addAttribute("amount", amount);
         model.addAttribute("dishIds", ids);
         model.addAttribute("username",
-                simplePrincipalService.getUsername(principal));
+                simpleCustomerService.getUsername(principal));
         return "basket";
     }
 
