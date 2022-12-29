@@ -24,6 +24,15 @@
         <a class="navbar-brand" th:href="@{/client}">Быстро и в точку</a>
         <a class="navbar-brand" th:href="@{/client/dish/menu}">Меню</a>
         <a class="navbar-brand" th:href="@{/client/basket}">Корзина</a>
+        <a class="navbar-brand" th:href="@{/client/reg}">Регистрация</a>
+        <a class="navbar-brand" th:if="${username == 'Гость'}" th:href="@{/client/login}">
+            <span>Гость</span>
+            <span> | Войти</span>
+        </a>
+        <a class="navbar-brand" th:if="${username != 'Гость'}" th:href="@{/client/logout}">
+            <span th:text="${username}"></span>
+            <span> | Выйти</span>
+        </a>
     </nav>
 
     <div style="padding-top: 20px">

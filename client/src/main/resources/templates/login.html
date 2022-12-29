@@ -24,19 +24,28 @@
         <a class="navbar-brand" th:href="@{/client}">Быстро и в точку</a>
         <a class="navbar-brand" th:href="@{/client/dish/menu}">Меню</a>
         <a class="navbar-brand" th:href="@{/client/basket}">Корзина</a>
+        <a class="navbar-brand" th:href="@{/client/reg}">Регистрация</a>
+        <a class="navbar-brand" th:if="${username == 'Гость'}" th:href="@{/client/login}">
+            <span>Гость</span>
+            <span> | Войти</span>
+        </a>
+        <a class="navbar-brand" th:if="${username != 'Гость'}" th:href="@{/client/logout}">
+            <span th:text="${username}"></span>
+            <span> | Выйти</span>
+        </a>
     </nav>
 
     <div style="padding-top: 50px">
         <div>
             <p><b th:if="${errorMessage} != null" th:text="${errorMessage}" style="color: red"></b></p>
         </div>
-        <form th:action="@{/login}" method="POST">
+        <form th:action="@{/client/login}" method="POST">
             <div>
                 <label for="username">Логин</label>
                 <input type="text" class="form-control" name="username" id="username">
             </div>
             <div>
-                <label for="password">Логин</label>
+                <label for="password">Пароль</label>
                 <input type="text" class="form-control" name="password" id="password">
             </div>
             <button type="submit" class="btn btn-primary mt-3">Войти</button>
