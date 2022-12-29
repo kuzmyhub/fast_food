@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.client.service.DishService;
 import ru.job4j.client.service.CustomerService;
+import ru.job4j.client.service.OrderService;
 import ru.job4j.domain.model.Customer;
 import ru.job4j.domain.model.Dish;
 import ru.job4j.domain.model.Order;
@@ -20,18 +21,19 @@ public class OrderController {
 
     private DishService simpleDishService;
     private CustomerService simpleCustomerService;
+    private OrderService simpleOrderService;
 
-    @GetMapping("/orderForm")
+    @GetMapping("/addressForm")
     public String orderForm(@ModelAttribute(name = "dishIds") String dishIds,
                             Model model, Principal principal) {
         model.addAttribute("dishIds", dishIds);
         model.addAttribute("username",
                 simpleCustomerService.getUsername(principal));
-        return "addOrder";
+        return "addAddress";
     }
 
-    @PostMapping("/createOrder")
-    public String createOrder(Principal principal,
+    @PostMapping("/formOrder")
+    public String formOrder(Principal principal, Model model,
                               @ModelAttribute(name = "dishIds") String ids,
                               @ModelAttribute(name = "street") String street,
                               @ModelAttribute(name = "house") String house,
@@ -49,15 +51,30 @@ public class OrderController {
         Customer customer = simpleCustomerService.findCustomerByUsername(
                 simpleCustomerService.getUsername(principal)
         );
-        Order order = new Order();
-        order.setAmount(dishAmount);
-        order.setAddress(address.toString());
-        order.setDishes(dishes);
-        order.setCustomer(customer);
-        /*
-        добавить заказчика, курьера и статус
-        */
-        return "redirect:/client/dish/menu";
+        model.addAttribute("address", address);
+        model.addAttribute("dishAmount", dishAmount);
+        model.addAttribute("dishes", dishes);
+        model.addAttribute("dishIds", ids);
+        model.addAttribute("username",
+                simpleCustomerService.getUsername(principal));
+        return "orderPreview";
     }
 
+    @PostMapping("/createOrder")
+    public String createOrder(@ModelAttribute(name = "dishIds") String ids,
+                              @ModelAttribute(name = "address") String address,
+                              Principal principal, Model model) {
+        List<Dish> dishes = simpleDishService.getBasketDishes(ids);
+        int dishAmount = simpleDishService.getDishAmount(dishes);
+        Customer customer = simpleCustomerService.findCustomerByUsername(
+                simpleCustomerService.getUsername(principal)
+        );
+        Order order = new Order();
+        order.setAmount(dishAmount);
+        order.setAddress(address);
+        order.setDishes(dishes);
+        order.setCustomer(customer);
+        simpleOrderService.createOrder(order);
+        return "redirect:/client";
+    }
 }

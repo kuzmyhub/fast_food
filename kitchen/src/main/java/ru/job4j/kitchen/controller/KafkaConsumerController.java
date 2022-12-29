@@ -16,7 +16,7 @@ public class KafkaConsumerController {
     @KafkaListener(topics = {"kitchenNotification"})
     public void onApiCall(ConsumerRecord<Integer, Order> input) throws InterruptedException {
         Order order = input.value();
-        System.out.println("Заказ принят на кухню " + order);
+        System.out.println("Заказ принят на кухню " + order.getAddress());
         simpleDishService.acceptOrder(order);
     }
 }

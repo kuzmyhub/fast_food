@@ -2,7 +2,7 @@ package ru.job4j.client.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.job4j.client.repository.DishAPIRepository;
+import ru.job4j.client.repository.DishRepository;
 import ru.job4j.domain.model.Dish;
 
 import java.util.*;
@@ -11,7 +11,7 @@ import java.util.*;
 @AllArgsConstructor
 public class SimpleDishService implements DishService {
 
-    private DishAPIRepository dishAPIRepository;
+    private DishRepository dishAPIRepository;
 
     public Optional<Dish> findDishById(int id) {
         return dishAPIRepository.findById(id);

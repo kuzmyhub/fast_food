@@ -1,7 +1,6 @@
 package ru.job4j.client.repository;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.ParameterizedTypeReference;
@@ -14,25 +13,28 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class DishAPIRepository implements DishRepository{
 
     @Value("${dish-api-url}")
     private String url;
 
-    @NonNull
-    private final RestTemplate client;
+    private final RestTemplate dishRestTemplate;
+
+    public DishAPIRepository(@Qualifier("dishRestTemplate")
+                             RestTemplate dishRestTemplate) {
+        this.dishRestTemplate = dishRestTemplate;
+    }
 
     public Optional<Dish> findById(int id) {
-        return Optional.ofNullable(client.getForEntity(
+        return Optional.ofNullable(dishRestTemplate.getForEntity(
                 String.format("%s/findById?id=%s", url, id),
                 Dish.class
         ).getBody());
     }
 
     public List<Dish> findAll() {
-        return client.exchange(
+        return dishRestTemplate.exchange(
                 url, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Dish>>() {
                 }

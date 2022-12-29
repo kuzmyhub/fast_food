@@ -16,8 +16,10 @@ public class KafkaConsumerController {
 
     @KafkaListener(topics = {"notification"})
     public void onApiCall(ConsumerRecord<Integer, Order> input) {
+        Order order = input.value();
         Notification notification = simpleNotificationService
-                .createNotification(input.value());
+                .createNotification(order);
         simpleNotificationService.save(notification);
+        simpleNotificationService.sendMessageToCustomer(notification);
     }
 }

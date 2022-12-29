@@ -1,7 +1,12 @@
 package ru.job4j.kitchen.repository;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.job4j.domain.model.Kitchen;
+import org.springframework.stereotype.Repository;
+import ru.job4j.domain.model.Dish;
 
-public interface DishRepository extends CrudRepository<Kitchen, Integer> {
+import java.util.List;
+
+@Repository
+public interface DishRepository extends CrudRepository<Dish, Integer> {
+    List<Dish> findAll();
 }

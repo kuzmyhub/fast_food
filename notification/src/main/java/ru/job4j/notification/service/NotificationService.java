@@ -8,4 +8,6 @@ public interface NotificationService {
     void save(Notification notification);
 
     Notification createNotification(Order order);
+
+    void sendMessageToCustomer(Notification notification);
 }

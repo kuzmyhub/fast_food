@@ -39,7 +39,7 @@ public class OrderController {
                                 )
                         )
                 );
-        simpleKafkaProducerService.send(order);
+        simpleKafkaProducerService.sendNotification(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 

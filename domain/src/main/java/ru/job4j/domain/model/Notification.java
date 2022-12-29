@@ -2,8 +2,8 @@ package ru.job4j.domain.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,10 +12,16 @@ import javax.persistence.Id;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
+@Table(name = "notifications")
 public class Notification {
     @Id
     @EqualsAndHashCode.Include
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String status;
+    @Column(name = "order_number")
+    private int orderNumber;
+    @Enumerated(EnumType.STRING)
+    private Status status;
     private String description;
+    private LocalDateTime created = LocalDateTime.now();
 }

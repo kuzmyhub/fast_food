@@ -22,7 +22,7 @@ public class Customer {
     private String username;
     private String phone;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "authority_id")
     private Authority authority;
 

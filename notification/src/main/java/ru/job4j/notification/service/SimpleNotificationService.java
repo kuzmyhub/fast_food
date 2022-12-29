@@ -18,14 +18,23 @@ public class SimpleNotificationService implements NotificationService {
 
     public Notification createNotification(Order order) {
         Notification notification = new Notification();
-        notification.setStatus("Принят");
+        notification.setOrderNumber(order.getId());
+        notification.setStatus(order.getStatus());
         notification.setDescription(
                 String.format(
-                        "Заказ %s на сумму %s принят в обработку",
+                        "Статус вашего заказа №%s на сумму %s: %s",
                         order.getId(),
-                        order.getAmount()
+                        order.getAmount(),
+                        order.getStatus()
                 )
         );
         return notification;
+    }
+
+    public void sendMessageToCustomer(Notification notification) {
+        System.out.println(notification);
+        /*
+        Логика отправки сообщения на телефон/mail
+        */
     }
 }
