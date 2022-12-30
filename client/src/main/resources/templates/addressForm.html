@@ -36,35 +36,25 @@
     </nav>
 
     <div style="padding-top: 20px">
-        <span><b style="color: #ff4d00; font-size: 25px">Проверьте введённые данные</b></span>
+        <span><b style="font-size: 20px">Заполните адрес доставки</b></span>
     </div>
 
-    <div style="padding-top: 20px">
-        <table style="margin: auto" width="680" border="0">
-            <tbody>
-            <tr>
-                <td style="border-bottom: 3px solid #808080; border-top: 3px solid #808080;"><b>Сумма заказа: </b></td>
-                <td th:text="${dishAmount}" style="border-bottom: 3px solid #808080; border-top: 3px solid #808080;"></td>
-            </tr>
-            <tr>
-                <td style="border-bottom: 3px solid #808080;"><b>Адрес доставки: </b></td>
-                <td th:text="${address}" style="border-bottom: 3px solid #808080;"></td>
-            </tr>
-            <tr th:each="dish: ${dishes}">
-                <td th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
-                <td th:text="${dish.cost}" style="border-bottom: 3px solid #808080;"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div style="padding-top: 20px; padding-bottom: 20px">
-        <form th:action="@{/client/payment/paymentForm}">
+    <div style="padding-top: 20px" class="card-body">
+        <form th:action="@{/client/order/orderPreview}" method="post">
             <input type="hidden" name="dishIds" th:value="${dishIds}">
-            <input type="hidden" name="address" th:value="${address}">
-            <button type="submit" class="btn btn-primary">
-                Оформить заказ
-            </button>
+            <div class="form-group">
+                <label><b>Улица</b></label>
+                <input type="text" class="form-control" name="street" id="street">
+                <label style="padding-top: 20px"><b>Дом</b></label>
+                <input type="text" class="form-control" name="house" id="house">
+                <label style="padding-top: 20px"><b>Подъезд</b></label>
+                <input type="text" class="form-control" name="entrance" id="entrance">
+                <label style="padding-top: 20px"><b>Этаж</b></label>
+                <input type="text" class="form-control" name="flor" id="flor">
+                <label style="padding-top: 20px"><b>Квартира</b></label>
+                <input type="text" class="form-control" name="apartment" id="apartment">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Далее</button>
         </form>
     </div>
 

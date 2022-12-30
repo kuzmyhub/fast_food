@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.domain.model.Notification;
 import ru.job4j.domain.model.Order;
+import ru.job4j.domain.model.Payment;
+import ru.job4j.domain.model.Status;
 import ru.job4j.notification.repository.NotificationRepository;
 
 @Service
@@ -12,11 +14,11 @@ public class SimpleNotificationService implements NotificationService {
 
     private NotificationRepository notificationRepository;
 
-    public void save(Notification notification) {
-        notificationRepository.save(notification);
+    public Notification save(Notification notification) {
+        return notificationRepository.save(notification);
     }
 
-    public Notification createNotification(Order order) {
+    public Notification createOrderStatusNotification(Order order) {
         Notification notification = new Notification();
         notification.setOrderNumber(order.getId());
         notification.setStatus(order.getStatus());
@@ -31,7 +33,22 @@ public class SimpleNotificationService implements NotificationService {
         return notification;
     }
 
-    public void sendMessageToCustomer(Notification notification) {
+    public Notification createPaymentStatusNotification(Payment payment) {
+        Notification notification = new Notification();
+        notification.setOrderNumber(payment.getOrder().getId());
+        notification.setStatus(Status.PAID);
+        notification.setDescription(
+                String.format(
+                        "Статус оплаты заказа №%s на сумму %s: %s",
+                        payment.getOrder().getId(),
+                        payment.getOrder().getAmount(),
+                        notification.getStatus()
+                )
+        );
+        return notification;
+    }
+
+    public void sendNotificationToCustomer(Notification notification) {
         System.out.println(notification);
         /*
         Логика отправки сообщения на телефон/mail

@@ -11,8 +11,8 @@ public class SimpleKafkaProducerService implements KafkaProducerService {
 
     private KafkaTemplate<Integer, Order> template;
 
-    public void sendNotification(Order order) {
-        template.send("notification", order);
+    public void sendOrderStatusNotification(Order order) {
+        template.send("orderStatusNotification", order);
         System.out.println("Уведомление отправлено " + order.getAddress());
     }
 

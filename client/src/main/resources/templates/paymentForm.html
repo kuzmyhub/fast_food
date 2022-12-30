@@ -36,23 +36,22 @@
     </nav>
 
     <div style="padding-top: 20px">
-        <span><b style="font-size: 20px">Заполните адрес доставки</b></span>
+        <span><b style="font-size: 20px">Введите данные карты</b></span>
     </div>
 
     <div style="padding-top: 20px" class="card-body">
-        <form th:action="@{/client/order/formOrder}" method="post">
+        <form th:action="@{/client/order/createOrder}" method="post">
             <input type="hidden" name="dishIds" th:value="${dishIds}">
+            <input type="hidden" name="address" th:value="${address}">
             <div class="form-group">
-                <label><b>Улица</b></label>
-                <input type="text" class="form-control" name="street" id="street">
-                <label style="padding-top: 20px"><b>Дом</b></label>
-                <input type="text" class="form-control" name="house" id="house">
-                <label style="padding-top: 20px"><b>Подъезд</b></label>
-                <input type="text" class="form-control" name="entrance" id="entrance">
-                <label style="padding-top: 20px"><b>Этаж</b></label>
-                <input type="text" class="form-control" name="flor" id="flor">
-                <label style="padding-top: 20px"><b>Квартира</b></label>
-                <input type="text" class="form-control" name="apartment" id="apartment">
+                <label><b>Номер карты</b></label>
+                <input type="text" class="form-control" name="number" id="number">
+                <label style="padding-top: 20px"><b>Срок действия</b></label>
+                <input type="text" class="form-control" name="period" id="period">
+                <label style="padding-top: 20px"><b>CVV</b></label>
+                <input type="text" class="form-control" name="cvv" id="cvv">
+                <label style="padding-top: 20px"><b>ФИО</b></label>
+                <input type="text" class="form-control" name="name" id="name">
             </div>
             <button type="submit" class="btn btn-primary mt-3">Далее</button>
         </form>

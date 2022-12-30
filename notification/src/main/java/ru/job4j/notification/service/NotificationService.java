@@ -2,12 +2,15 @@ package ru.job4j.notification.service;
 
 import ru.job4j.domain.model.Notification;
 import ru.job4j.domain.model.Order;
+import ru.job4j.domain.model.Payment;
 
 public interface NotificationService {
 
-    void save(Notification notification);
+    Notification save(Notification notification);
 
-    Notification createNotification(Order order);
+    Notification createOrderStatusNotification(Order order);
 
-    void sendMessageToCustomer(Notification notification);
+    Notification createPaymentStatusNotification(Payment payment);
+
+    void sendNotificationToCustomer(Notification notification);
 }

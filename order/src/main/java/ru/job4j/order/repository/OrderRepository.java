@@ -12,4 +12,6 @@ public interface OrderRepository extends CrudRepository<Order, Integer> {
 
     List<Order> findAllByCustomer(Customer customer);
 
+    Order saveAndFlush(Order order);
+
 }

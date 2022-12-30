@@ -24,7 +24,6 @@ public class SimpleDishService implements DishService {
     public List<Dish> getBasketDishes(String ids) {
         List<Dish> dishes = new ArrayList<>();
         String[] dishesId = ids.split("\\.");
-        System.out.println(Arrays.toString(dishesId));
         for (String s : dishesId) {
             int id = Integer.parseInt(s);
             Optional<Dish> optionalDish = findDishById(id);

@@ -2,10 +2,7 @@ package ru.job4j.domain.model;
 
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
@@ -15,12 +12,13 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
 @Entity
+@Table(name = "payments")
 public class Payment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
-    private String amount;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Order order;
     private LocalDateTime created = LocalDateTime.now();
 }

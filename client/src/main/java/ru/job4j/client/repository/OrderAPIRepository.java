@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 @PropertySource("classpath:application.properties")
-public class OrderAPIRepository implements OrderRepository {
+public class OrderAPIRepository {
 
     @Value("${order-api-url}")
     private String url;
@@ -41,6 +41,4 @@ public class OrderAPIRepository implements OrderRepository {
     public List<Order> findAllByCustomer(Customer customer) {
         return null;
     }
-
-
 }

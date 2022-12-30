@@ -45,10 +45,9 @@ public class BasketController {
         } else {
             cookie = new Cookie("basket", ids + "." + id);
         }
-        cookie.setMaxAge(18000);
+        cookie.setMaxAge(100000);
         response.addCookie(cookie);
         response.setContentType("text/plain");
-        System.out.println(cookie.getValue());
         model.addAttribute("dishes", simpleDishService.findAll());
         return "redirect:/client/dish/menu";
     }

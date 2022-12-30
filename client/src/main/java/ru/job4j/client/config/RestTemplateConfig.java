@@ -18,4 +18,10 @@ public class RestTemplateConfig {
     public RestTemplate createOrderRestTemplate() {
         return new RestTemplate();
     }
+
+    @Bean
+    @Qualifier("paymentRestTemplate")
+    public RestTemplate createPaymentRestTemplate() {
+        return new RestTemplate();
+    }
 }

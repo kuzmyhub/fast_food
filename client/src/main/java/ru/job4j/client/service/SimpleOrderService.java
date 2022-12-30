@@ -2,7 +2,7 @@ package ru.job4j.client.service;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.job4j.client.repository.OrderRepository;
+import ru.job4j.client.repository.OrderAPIRepository;
 import ru.job4j.domain.model.Customer;
 import ru.job4j.domain.model.Order;
 
@@ -13,7 +13,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class SimpleOrderService implements OrderService {
 
-    private OrderRepository orderAPIRepository;
+    private OrderAPIRepository orderAPIRepository;
 
     public Order createOrder(Order order) {
         return orderAPIRepository.save(order);

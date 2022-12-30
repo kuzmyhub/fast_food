@@ -22,6 +22,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<Order> createOrder(@RequestBody Order order) {
+        simpleOrderService.createOrder(order);
         simpleKafkaProducerService.sendToKitchen(order);
         return new ResponseEntity<>(
                 order,
@@ -39,7 +40,6 @@ public class OrderController {
                                 )
                         )
                 );
-        simpleKafkaProducerService.sendNotification(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 

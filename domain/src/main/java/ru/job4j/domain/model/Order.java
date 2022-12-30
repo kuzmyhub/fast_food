@@ -1,5 +1,6 @@
 package ru.job4j.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
+    @JsonProperty("id")
     private int id;
     private int amount;
     private String address;
