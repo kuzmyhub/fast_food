@@ -11,6 +11,7 @@ import ru.job4j.domain.model.Order;
 import ru.job4j.domain.model.Payment;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("client/payment")
@@ -35,9 +36,12 @@ public class PaymentController {
     @GetMapping("/createPayment")
     public String createPayment(@RequestParam(name = "id") int id,
                                 Model model, Principal principal) {
-        Order order = simpleOrderService.findOrderById(id).get();
+        Optional<Order> optionalOrder = simpleOrderService.findOrderById(id);
+        if (optionalOrder.isEmpty()) {
+            return "404";
+        }
         Payment payment = new Payment();
-        payment.setOrder(order);
+        payment.setOrder(optionalOrder.get());
         simplePaymentService.save(payment);
         model.addAttribute("username",
                 simpleCustomerService.getUsername(principal));

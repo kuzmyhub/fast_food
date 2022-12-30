@@ -23,5 +23,6 @@ public class KafkaConsumerController {
         System.out.println("Заказ принят с кухни " + order.getAddress());
         simpleOrderService.createOrder(order);
         simpleKafkaProducerService.sendOrderStatusNotification(order);
+        simpleKafkaProducerService.sendToDelivery(order);
     }
 }
