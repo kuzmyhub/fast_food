@@ -1,5 +1,5 @@
 package ru.job4j.domain.model;
 
 public enum Status {
-    CREATED, CANCEL, COOKED, PAID
+    PAID, CREATED, CANCEL, COOKED, DELIVERED, DELIVERY
 }

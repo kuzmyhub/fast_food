@@ -24,8 +24,12 @@ public class BasketController {
     @GetMapping
     public String basket(Model model, Principal principal,
                          @CookieValue(value = "basket", required = false) String ids) {
-        List<Dish> dishes = simpleDishService.getBasketDishes(ids);
-        Integer amount = simpleDishService.getDishAmount(dishes);
+        List<Dish> dishes = new ArrayList<>();
+        int amount = 0;
+        if (ids != null) {
+            dishes = simpleDishService.getBasketDishes(ids);
+            amount = simpleDishService.getDishAmount(dishes);
+        }
         model.addAttribute("dishes", dishes);
         model.addAttribute("amount", amount);
         model.addAttribute("dishIds", ids);
@@ -45,7 +49,7 @@ public class BasketController {
         } else {
             cookie = new Cookie("basket", ids + "." + id);
         }
-        cookie.setMaxAge(100000);
+        cookie.setMaxAge(10000);
         response.addCookie(cookie);
         response.setContentType("text/plain");
         model.addAttribute("dishes", simpleDishService.findAll());

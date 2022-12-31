@@ -18,6 +18,6 @@ public class Courier {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private int id;
-    private String name;
     private String number;
+    private String name;
 }

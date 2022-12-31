@@ -77,4 +77,9 @@ public class OrderController {
         Order savedOrder = simpleOrderService.createOrder(order);
         return "redirect:/client/payment/createPayment/?id=" + savedOrder.getId();
     }
+
+    @GetMapping("/clientOrders")
+    public String clientOrders(Model model, Principal principal) {
+        return "clientOrders";
+    }
 }

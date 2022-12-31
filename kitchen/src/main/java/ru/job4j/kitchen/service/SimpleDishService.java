@@ -33,6 +33,6 @@ public class SimpleDishService implements DishService {
     }
 
     public void makeOrder() throws InterruptedException {
-        Thread.sleep(5000);
+        Thread.sleep(10000);
     }
 }

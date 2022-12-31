@@ -12,7 +12,7 @@ import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.*;
 import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.kafka.support.serializer.JsonSerializer;
-import ru.job4j.domain.model.Courier;
+import ru.job4j.domain.model.Order;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,12 +27,12 @@ public class KafkaConfig {
     private String kafkaGroupId;
 
     @Bean
-    public KafkaTemplate<Integer, Courier> kafkaTemplate() {
+    public KafkaTemplate<Integer, Order> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 
     @Bean
-    public ProducerFactory<Integer, Courier> producerFactory() {
+    public ProducerFactory<Integer, Order> producerFactory() {
         return new DefaultKafkaProducerFactory<>(producerConfigs());
     }
 
@@ -47,17 +47,17 @@ public class KafkaConfig {
 
     @Bean
     public KafkaListenerContainerFactory<?> kafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<Integer, Courier> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        ConcurrentKafkaListenerContainerFactory<Integer, Order> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }
 
     @Bean
-    public ConsumerFactory<Integer, Courier> consumerFactory() {
+    public ConsumerFactory<Integer, Order> consumerFactory() {
         return new DefaultKafkaConsumerFactory<>(
                 consumerConfigs(),
                 new IntegerDeserializer(),
-                new JsonDeserializer<>(Courier.class)
+                new JsonDeserializer<>(Order.class)
         );
     }
 

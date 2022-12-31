@@ -51,7 +51,7 @@ public class SimpleNotificationService implements NotificationService {
     public void sendNotificationToCustomer(Notification notification) {
         System.out.println(notification);
         /*
-        Логика отправки сообщения на телефон/mail
+        Логика отправки уведомления
         */
     }
 }
