@@ -12,5 +12,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class ClientMain {
     public static void main(String[] args) {
         SpringApplication.run(ClientMain.class, args);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String psw = encoder.encode("password");
+        System.out.println(psw);
     }
 }

@@ -22,22 +22,49 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/home}">Быстро и в точку</a>
+        <a class="navbar-brand" th:href="@{/admin/dish/menu}">Меню</a>
     </nav>
 
-    <div>
-        <table style="margin: auto" width="600" border="0">
+    <div th:if="${delete == true}" style="padding-top: 20px">
+        <span><b style="color: #ff4d00; font-size: 25px">Блюдо удалено из меню</b></span>
+    </div>
+
+    <div style="padding-top: 20px">
+        <form th:action="@{/admin/dish/formAddDish}">
+            <button type="submit" class="btn btn-primary">
+                Добавить блюдо в меню
+            </button>
+        </form>
+    </div>
+
+    <div style="padding-top: 20px">
+        <table style="margin: auto" width="680" border="0">
             <thead>
             <tr>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">№</th>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Блюдо</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Наименование</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Описание</th>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Стоимость</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Фото</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Удалить</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="dish: ${dishes}">
-                <td height="165px" th:text="${dish.id}" style="border-bottom: 3px solid #808080;"></td>
-                <td height="165px" th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>
-                <td height="165px" th:text="${dish.cost}" style="border-bottom: 3px solid #808080;"></td>
+            <tr th:each="dish: ${dishes}" style="height: 220px">
+                <td height="200px" style="border-bottom: 3px solid #808080;">
+                    <a th:href="@{|/admin/dish/formUpdateDish/${dish.id}|}" th:text="${dish.name}" class="reduction"></a>
+                </td>
+                <td height="200px" th:text="${dish.description}" style="border-bottom: 3px solid #808080;"></td>
+                <td height="200px" th:text="${dish.cost} + ' ' + руб." style="border-bottom: 3px solid #808080;"></td>
+                <td style="border-bottom: 3px solid #808080;">
+                    <img width="200" th:src="@{|/admin/dish/photo/${dish.id}|}">
+                </td>
+                <td style="border-bottom: 3px solid #808080;">
+                    <form th:action="@{/admin/dish/deleteDish}" method="post">
+                        <button type="submit" name="id" th:value="${dish.id}" class="btn btn-primary">
+                            -
+                        </button>
+                    </form>
+                </td>
             </tr>
             </tbody>
         </table>

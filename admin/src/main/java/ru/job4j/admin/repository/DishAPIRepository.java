@@ -5,9 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import ru.job4j.domain.model.Dish;
@@ -26,7 +24,6 @@ public class DishAPIRepository {
     private final RestTemplate client;
 
     public Dish save(Dish dish) {
-        System.out.println(url);
         return client.postForEntity(
                 url, dish, Dish.class
         ).getBody();

@@ -26,8 +26,8 @@ public class SimpleDishService implements DishService {
         return dishRepository.findByName(name);
     }
 
-    public boolean deleteDishById(int id) {
-        return dishRepository.deleteById(id);
+    public void deleteDishById(int id) {
+        dishRepository.deleteById(id);
     }
 
     public List<Dish> findAll() {

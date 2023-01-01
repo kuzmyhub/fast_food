@@ -47,7 +47,6 @@ public class OrderController {
     public ResponseEntity<List<Order>> findAllByCustomerId(
             @RequestParam(name = "id") int id
     ) {
-        System.out.println("Принял " + customer.getUsername());
         return new ResponseEntity<>(
                 simpleOrderService.findAllOrdersByCustomerId(id),
                 HttpStatus.OK

@@ -10,6 +10,4 @@ public interface DishRepository extends CrudRepository<Dish, Integer> {
     Optional<Dish> findByName(String name);
 
     List<Dish> findAll();
-
-    boolean deleteById(int id);
 }

@@ -25,8 +25,21 @@
         <a class="navbar-brand" th:href="@{/admin/dish/menu}">Меню</a>
     </nav>
 
-    <div style="text-align: center; padding-top: 20px">
-        <img th:src="@{/images/logo.png}" alt="poster" width="592">
+    <div style="padding-top: 50px">
+        <div>
+            <p><b th:if="${errorMessage} != null" th:text="${errorMessage}" style="color: red"></b></p>
+        </div>
+        <form th:action="@{/admin/login}" method="POST">
+            <div>
+                <label for="username">Логин</label>
+                <input type="text" class="form-control" name="username" id="username">
+            </div>
+            <div>
+                <label for="password">Пароль</label>
+                <input type="text" class="form-control" name="password" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Войти</button>
+        </form>
     </div>
 
 </div>

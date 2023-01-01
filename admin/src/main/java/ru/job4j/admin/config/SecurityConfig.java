@@ -1,4 +1,4 @@
-package ru.job4j.client.config;
+package ru.job4j.admin.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -40,19 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/client/login", "/client/reg")
+                .antMatchers("/admin/login")
                 .permitAll()
                 .antMatchers("/**")
-                .hasAnyRole("USER")
+                .hasAnyRole("ADMIN")
                 .and()
                 .formLogin()
-                .loginPage("/client/login")
-                .defaultSuccessUrl("/client")
-                .failureUrl("/client/login?error=true")
+                .loginPage("/admin/login")
+                .defaultSuccessUrl("/admin")
+                .failureUrl("/admin/login?error=true")
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/client/login?logout=true")
+                .logoutSuccessUrl("/admin/login?logout=true")
                 .invalidateHttpSession(true)
                 .permitAll()
                 .and()

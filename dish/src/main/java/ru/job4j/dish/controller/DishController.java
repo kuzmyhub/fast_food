@@ -18,7 +18,7 @@ public class DishController {
     private DishService simpleDishService;
 
     @PostMapping
-    public ResponseEntity<Dish> addDish(Dish dish) {
+    public ResponseEntity<Dish> addDish(@RequestBody Dish dish) {
         return new ResponseEntity<>(
                 simpleDishService.addDish(dish),
                 HttpStatus.OK
@@ -56,9 +56,9 @@ public class DishController {
     }
 
     @DeleteMapping
-    public ResponseEntity<Boolean> deleteDish(@RequestParam int id) {
+    public ResponseEntity<Void> deleteDish(@RequestParam int id) {
+        simpleDishService.deleteDishById(id);
         return new ResponseEntity<>(
-                simpleDishService.deleteDishById(id),
                 HttpStatus.OK
         );
     }
