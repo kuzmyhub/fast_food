@@ -80,6 +80,13 @@ public class OrderController {
 
     @GetMapping("/clientOrders")
     public String clientOrders(Model model, Principal principal) {
+        Customer customer = simpleCustomerService.findCustomerByUsername(
+                simpleCustomerService.getUsername(principal)
+        );
+        List<Order> orders = simpleOrderService.findAllOrdersByCustomer(customer);
+        model.addAttribute("orders", orders);
+        model.addAttribute("username",
+                simpleCustomerService.getUsername(principal));
         return "clientOrders";
     }
 }
