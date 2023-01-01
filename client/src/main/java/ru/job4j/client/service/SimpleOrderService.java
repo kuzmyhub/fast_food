@@ -23,7 +23,7 @@ public class SimpleOrderService implements OrderService {
         return orderAPIRepository.findById(id);
     }
 
-    public List<Order> findAllOrdersByCustomer(Customer customer) {
-        return orderAPIRepository.findAllByCustomer(customer);
+    public List<Order> findAllOrdersByCustomerId(int id) {
+        return orderAPIRepository.findAllByCustomerId(id);
     }
 }

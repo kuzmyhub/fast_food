@@ -13,7 +13,8 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
 
     String FIND_CUSTOMER_BY_USERNAME = """
             FROM Customer c JOIN FETCH
-            c.authority WHERE c.username = :fUsername""";
+            c.authority WHERE c.username = :fUsername
+            """;
 
     @Query(FIND_CUSTOMER_BY_USERNAME)
     Customer findByUsername(@Param("fUsername") String username);

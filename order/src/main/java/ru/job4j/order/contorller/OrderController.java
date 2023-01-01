@@ -44,11 +44,11 @@ public class OrderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Order>> findAllByCustomer(
-            @RequestBody Customer customer
+    public ResponseEntity<List<Order>> findAllByCustomerId(
+            @RequestParam(name = "id") int id
     ) {
         return new ResponseEntity<>(
-                simpleOrderService.findAllOrdersByCustomer(customer),
+                simpleOrderService.findAllOrdersByCustomerId(id),
                 HttpStatus.OK
         );
     }

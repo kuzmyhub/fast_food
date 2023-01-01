@@ -28,7 +28,7 @@ public class SimpleOrderService implements OrderService {
         return orderRepository.findById(id);
     }
 
-    public List<Order> findAllOrdersByCustomer(Customer customer) {
-        return orderRepository.findAllByCustomer(customer);
+    public List<Order> findAllOrdersByCustomerId(int id) {
+        return orderRepository.findAllByCustomerId(id);
     }
 }

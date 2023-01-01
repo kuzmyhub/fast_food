@@ -3,11 +3,17 @@ package ru.job4j.client.repository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import ru.job4j.domain.model.Customer;
 import ru.job4j.domain.model.Order;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +44,12 @@ public class OrderAPIRepository {
         );
     }
 
-    public List<Order> findAllByCustomer(Customer customer) {
-        return null;
+    public List<Order> findAllByCustomerId(int id) {
+        List<Order> body = orderRestTemplate.exchange(
+                String.format("%s?id=%s", url, id), HttpMethod.GET, null,
+                new ParameterizedTypeReference<List<Order>>() {
+                }
+        ).getBody();
+        return body == null ? Collections.emptyList() : body;
     }
 }
