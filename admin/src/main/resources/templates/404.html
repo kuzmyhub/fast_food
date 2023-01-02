@@ -20,8 +20,19 @@
 <body>
 <div class="container pt-3" style="text-align: center;">
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="color: #c0ba78">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/admin}">Быстро и в точку</a>
+        <a class="navbar-brand" th:href="@{/admin/dish/menu}">Меню</a>
+        <a class="navbar-brand" th:href="@{/admin/courier/couriers}">Курьеры</a>
+        <a class="navbar-brand" th:href="@{/admin/order/orders}">Заказы</a>
+        <a class="navbar-brand" th:if="${username == 'Гость'}" th:href="@{/admin/login}">
+            <span>Гость</span>
+            <span> | Войти</span>
+        </a>
+        <a class="navbar-brand" th:if="${username != 'Гость'}" th:href="@{/admin/logout}">
+            <span th:text="${username}"></span>
+            <span> | Выйти</span>
+        </a>
     </nav>
 
     <div class="indent_div">

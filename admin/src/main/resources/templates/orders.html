@@ -35,21 +35,27 @@
         </a>
     </nav>
 
-    <div style="padding-top: 50px">
-        <div>
-            <p><b th:if="${errorMessage} != null" th:text="${errorMessage}" style="color: red"></b></p>
-        </div>
-        <form th:action="@{/admin/login}" method="POST">
-            <div>
-                <label for="username">Логин</label>
-                <input type="text" class="form-control" name="username" id="username">
-            </div>
-            <div>
-                <label for="password">Пароль</label>
-                <input type="text" class="form-control" name="password" id="password">
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Войти</button>
-        </form>
+    <div style="padding-top: 20px">
+        <table style="margin: auto" width="800" border="0">
+            <thead>
+            <tr>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">№</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Адрес</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Статус</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Время создания</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="order: ${orders}" style="height: 50px">
+                <td height="50px" style="border-bottom: 3px solid #808080;">
+                    <a th:href="@{|/admin/order/orderInformation/${order.id}|}" th:text="${order.id}" class="reduction"></a>
+                </td>
+                <td height="50px" th:text="${order.address}" style="border-bottom: 3px solid #808080;"></td>
+                <td height="50px" th:text="${order.status}" style="border-bottom: 3px solid #808080;"></td>
+                <td height="50px" th:text="${#temporals.format(order.created, 'dd-MM-yyyy HH:mm')}" style="border-bottom: 3px solid #808080;"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 </div>

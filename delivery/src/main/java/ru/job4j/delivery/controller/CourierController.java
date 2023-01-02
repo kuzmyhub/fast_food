@@ -24,9 +24,17 @@ public class CourierController {
         );
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteCourierById(@RequestParam int id) {
-        simpleCourierService.deleteById(id);
+    @PostMapping("/dismiss")
+    public ResponseEntity<Void> dismissCourierById(@RequestParam int id) {
+        simpleCourierService.dismissById(id);
+        return new ResponseEntity<>(
+                HttpStatus.OK
+        );
+    }
+
+    @PostMapping("/hire")
+    public ResponseEntity<Void> hireCourierById(@RequestParam int id) {
+        simpleCourierService.hireById(id);
         return new ResponseEntity<>(
                 HttpStatus.OK
         );

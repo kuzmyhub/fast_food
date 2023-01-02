@@ -33,10 +33,19 @@ public class CourierAPIRepository {
         ).getBody();
     }
 
-    public boolean deleteById(int id) {
+    public boolean dismissById(int id) {
         return deliveryRestTemplate.exchange(
-                String.format("%s?id=%s", url, id),
-                HttpMethod.DELETE,
+                String.format("%s%s?id=%s", url, "/dismiss", id),
+                HttpMethod.POST,
+                HttpEntity.EMPTY,
+                Void.class
+        ).getStatusCode() != HttpStatus.NOT_FOUND;
+    }
+
+    public boolean hireById(int id) {
+        return deliveryRestTemplate.exchange(
+                String.format("%s%s?id=%s", url, "/hire", id),
+                HttpMethod.POST,
                 HttpEntity.EMPTY,
                 Void.class
         ).getStatusCode() != HttpStatus.NOT_FOUND;

@@ -21,6 +21,11 @@
 <div class="container pt-3" style="text-align: center;">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" th:href="@{/home}">Быстро и в точку</a>
+        <a class="navbar-brand" th:href="@{/admin/dish/menu}">Меню</a>
+    </nav>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/admin}">Быстро и в точку</a>
         <a class="navbar-brand" th:href="@{/admin/dish/menu}">Меню</a>
         <a class="navbar-brand" th:href="@{/admin/courier/couriers}">Курьеры</a>
@@ -34,23 +39,6 @@
             <span> | Выйти</span>
         </a>
     </nav>
-
-    <div style="padding-top: 50px">
-        <div>
-            <p><b th:if="${errorMessage} != null" th:text="${errorMessage}" style="color: red"></b></p>
-        </div>
-        <form th:action="@{/admin/login}" method="POST">
-            <div>
-                <label for="username">Логин</label>
-                <input type="text" class="form-control" name="username" id="username">
-            </div>
-            <div>
-                <label for="password">Пароль</label>
-                <input type="text" class="form-control" name="password" id="password">
-            </div>
-            <button type="submit" class="btn btn-primary mt-3">Войти</button>
-        </form>
-    </div>
 
 </div>
 </body>

@@ -9,6 +9,7 @@ import ru.job4j.domain.model.Status;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -48,8 +49,32 @@ public class SimpleCourierService implements CourierService {
         return courierRepository.save(courier);
     }
 
-    public void deleteById(int id) {
-        courierRepository.deleteById(id);
+    public void dismissById(int id) {
+        Courier courier = findById(id).orElseThrow(
+                () -> new NoSuchElementException(
+                        String.format(
+                                "Courier id=%s not found", id
+                        )
+                )
+        );
+        courier.setDismissed(true);
+        save(courier);
+    }
+
+    public void hireById(int id) {
+        Courier courier = findById(id).orElseThrow(
+                () -> new NoSuchElementException(
+                        String.format(
+                                "Courier id=%s not found", id
+                        )
+                )
+        );
+        courier.setDismissed(false);
+        save(courier);
+    }
+
+    public Optional<Courier> findById(int id) {
+        return courierRepository.findById(id);
     }
 
     public List<Courier> findAll() {

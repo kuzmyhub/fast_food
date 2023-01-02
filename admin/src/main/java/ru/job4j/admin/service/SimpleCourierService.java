@@ -17,8 +17,12 @@ public class SimpleCourierService implements CourierService {
         return courierAPIRepository.save(courier);
     }
 
-    public boolean deleteById(int id) {
-        return courierAPIRepository.deleteById(id);
+    public boolean dismissById(int id) {
+        return courierAPIRepository.dismissById(id);
+    }
+
+    public boolean hireById(int id) {
+        return courierAPIRepository.hireById(id);
     }
 
     public List<Courier> findAll() {

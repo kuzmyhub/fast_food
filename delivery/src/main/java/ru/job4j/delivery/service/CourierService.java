@@ -4,6 +4,7 @@ import ru.job4j.domain.model.Courier;
 import ru.job4j.domain.model.Order;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CourierService {
 
@@ -15,7 +16,11 @@ public interface CourierService {
 
     Courier save(Courier courier);
 
-    void deleteById(int id);
+    void dismissById(int id);
+
+    void hireById(int id);
+
+    Optional<Courier> findById(int id);
 
     List<Courier> findAll();
 

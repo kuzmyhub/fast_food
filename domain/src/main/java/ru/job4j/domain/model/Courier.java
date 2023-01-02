@@ -20,4 +20,5 @@ public class Courier {
     private int id;
     private String number;
     private String name;
+    private boolean dismissed = false;
 }

@@ -10,10 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.job4j.admin.service.CustomerService;
 import ru.job4j.admin.service.DishService;
 import ru.job4j.domain.model.Dish;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -23,12 +25,15 @@ import java.util.Optional;
 public class DishController {
 
     private DishService simpleDishService;
+    private CustomerService simpleCustomerService;
 
     @GetMapping("/menu")
     public String menu(@RequestParam(name = "delete", required = false) boolean delete,
-                       Model model) {
+                       Model model, Principal principal) {
         model.addAttribute("dishes", simpleDishService.findAll());
         model.addAttribute("delete", delete);
+        model.addAttribute("username",
+                simpleCustomerService.getUsername(principal));
         return "menu";
     }
 
@@ -39,7 +44,9 @@ public class DishController {
     }
 
     @GetMapping("/formAddDish")
-    public String formAddDish() {
+    public String formAddDish(Model model, Principal principal) {
+        model.addAttribute("username",
+                simpleCustomerService.getUsername(principal));
         return "addDish";
     }
 
@@ -52,7 +59,10 @@ public class DishController {
     }
 
     @GetMapping("/formUpdateDish/{id}")
-    public String formUpdateDish(Model model, @PathVariable("id") Integer id) {
+    public String formUpdateDish(Model model, Principal principal,
+                                 @PathVariable("id") Integer id) {
+        model.addAttribute("username",
+                simpleCustomerService.getUsername(principal));
         Optional<Dish> optionalDish = simpleDishService.findDishById(id);
         if (optionalDish.isEmpty()) {
             return "404";

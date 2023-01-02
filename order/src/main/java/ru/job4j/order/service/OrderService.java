@@ -12,4 +12,6 @@ public interface OrderService {
     Optional<Order> findOrderById(int id);
 
     List<Order> findAllOrdersByCustomerId(int id);
+
+    List<Order> findAll();
 }

@@ -8,7 +8,9 @@ public interface CourierService {
 
     Courier add(Courier courier);
 
-    boolean deleteById(int id);
+    boolean dismissById(int id);
+
+    boolean hireById(int id);
 
     List<Courier> findAll();
 }

@@ -18,4 +18,10 @@ public class RestTemplateConfig {
     public RestTemplate createCourierRestTemplate() {
         return new RestTemplate();
     }
+
+    @Bean
+    @Qualifier("orderRestTemplate")
+    public RestTemplate orderCourierRestTemplate() {
+        return new RestTemplate();
+    }
 }

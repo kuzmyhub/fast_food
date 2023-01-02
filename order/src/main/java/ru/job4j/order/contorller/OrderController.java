@@ -52,4 +52,12 @@ public class OrderController {
                 HttpStatus.OK
         );
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Order>> findAll() {
+        return new ResponseEntity<>(
+                simpleOrderService.findAll(),
+                HttpStatus.OK
+        );
+    }
 }

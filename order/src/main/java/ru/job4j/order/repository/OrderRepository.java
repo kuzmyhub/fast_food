@@ -1,5 +1,6 @@
 package ru.job4j.order.repository;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -21,4 +22,6 @@ public interface OrderRepository extends CrudRepository<Order, Integer> {
 
     Order saveAndFlush(Order order);
 
+    @NotNull
+    List<Order> findAll();
 }
