@@ -43,4 +43,16 @@ public class SimpleCourierService implements CourierService {
         order.setStatus(Status.DELIVERY);
         return order;
     }
+
+    public Courier save(Courier courier) {
+        return courierRepository.save(courier);
+    }
+
+    public void deleteById(int id) {
+        courierRepository.deleteById(id);
+    }
+
+    public List<Courier> findAll() {
+        return courierRepository.findAll();
+    }
 }

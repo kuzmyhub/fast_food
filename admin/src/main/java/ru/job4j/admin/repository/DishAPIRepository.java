@@ -1,7 +1,6 @@
 package ru.job4j.admin.repository;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,38 +12,40 @@ import ru.job4j.domain.model.Dish;
 import java.util.List;
 
 @Repository
-@RequiredArgsConstructor
 @PropertySource("classpath:application.properties")
 public class DishAPIRepository {
 
     @Value("${dish-api-url}")
     private String url;
 
-    @NonNull
-    private final RestTemplate client;
+    private final RestTemplate dishRestTemplate;
+
+    public DishAPIRepository(@Qualifier("dishRestTemplate") RestTemplate dishRestTemplate) {
+        this.dishRestTemplate = dishRestTemplate;
+    }
 
     public Dish save(Dish dish) {
-        return client.postForEntity(
+        return dishRestTemplate.postForEntity(
                 url, dish, Dish.class
         ).getBody();
     }
 
     public Dish findById(int id) {
-        return client.getForEntity(
+        return dishRestTemplate.getForEntity(
                 String.format("%s/findById?id=%s", url, id),
                 Dish.class
         ).getBody();
     }
 
     public Dish findByName(String name) {
-        return client.getForEntity(
+        return dishRestTemplate.getForEntity(
                 String.format("%s/findByName?name=%s", url, name),
                 Dish.class
         ).getBody();
     }
 
     public boolean deleteById(int id) {
-        return client.exchange(
+        return dishRestTemplate.exchange(
                 String.format("%s?id=%s", url, id),
                 HttpMethod.DELETE,
                 HttpEntity.EMPTY,
@@ -53,7 +54,7 @@ public class DishAPIRepository {
     }
 
     public List<Dish> findAll() {
-        return client.exchange(
+        return dishRestTemplate.exchange(
                 url, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Dish>>() {
                 }
