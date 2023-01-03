@@ -5,4 +5,9 @@
         xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
     http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <include file="db/scripts/001_ddl_create_authorities_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/002_ddl_create_customers_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/003_dml_initialization_authorities_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/004_dml_initialization_customers_table.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

@@ -1,4 +1,4 @@
-CREATE TABLE orders(
+CREATE TABLE IF NOT EXISTS orders(
 id SERIAL PRIMARY KEY,
 amount INT,
 address VARCHAR(150),
