@@ -11,5 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class AdminMain {
     public static void main(String[] args) {
         SpringApplication.run(AdminMain.class, args);
+        System.out.println("http://localhost:8100/admin/login");
     }
 }

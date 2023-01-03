@@ -35,8 +35,12 @@
         </a>
     </nav>
 
-    <div th:if="${dismiss == true}" style="padding-top: 20px">
+    <div th:if="${dismiss == 'true'}" style="padding-top: 20px">
         <span><b style="color: #ff4d00; font-size: 25px">Курьер уволен</b></span>
+    </div>
+
+    <div th:if="${dismiss == 'false'}" style="padding-top: 20px">
+        <span><b style="color: #138808; font-size: 25px">Курьер нанят</b></span>
     </div>
 
     <div style="padding-top: 20px">
@@ -61,7 +65,10 @@
             <tr th:each="courier: ${couriers}" style="height: 50px">
                 <td height="50px" th:text="${courier.name}" style="border-bottom: 3px solid #808080;"></td>
                 <td height="50px" th:text="${courier.number}" style="border-bottom: 3px solid #808080;"></td>
-                <td height="50px" th:text="${courier.dismissed}" style="border-bottom: 3px solid #808080;"></td>
+                <td height="50px" style="border-bottom: 3px solid #808080;">
+                    <span th:if="${courier.dismissed} == true">Уволен</span>
+                    <span th:if="${courier.dismissed} == false">Нанят</span>
+                </td>
                 <td style="border-bottom: 3px solid #808080;">
                     <form th:action="@{/admin/courier/dismissCourier}" th:if="${courier.dismissed == false}" method="post">
                         <button type="submit" name="id" th:value="${courier.id}" class="btn btn-primary">

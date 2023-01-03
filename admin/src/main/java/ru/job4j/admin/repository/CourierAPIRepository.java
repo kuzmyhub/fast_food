@@ -36,7 +36,7 @@ public class CourierAPIRepository {
     public boolean dismissById(int id) {
         return deliveryRestTemplate.exchange(
                 String.format("%s%s?id=%s", url, "/dismiss", id),
-                HttpMethod.POST,
+                HttpMethod.PUT,
                 HttpEntity.EMPTY,
                 Void.class
         ).getStatusCode() != HttpStatus.NOT_FOUND;
@@ -45,7 +45,7 @@ public class CourierAPIRepository {
     public boolean hireById(int id) {
         return deliveryRestTemplate.exchange(
                 String.format("%s%s?id=%s", url, "/hire", id),
-                HttpMethod.POST,
+                HttpMethod.PUT,
                 HttpEntity.EMPTY,
                 Void.class
         ).getStatusCode() != HttpStatus.NOT_FOUND;

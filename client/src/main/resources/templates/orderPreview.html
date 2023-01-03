@@ -44,12 +44,12 @@
         <table style="margin: auto" width="680" border="0">
             <tbody>
             <tr>
-                <td style="border-bottom: 3px solid #808080; border-top: 3px solid #808080;"><b>Сумма заказа: </b></td>
-                <td th:text="${dishAmount}" style="border-bottom: 3px solid #808080; border-top: 3px solid #808080;"></td>
-            </tr>
-            <tr>
                 <td style="border-bottom: 3px solid #808080;"><b>Адрес доставки: </b></td>
                 <td th:text="${address}" style="border-bottom: 3px solid #808080;"></td>
+            </tr>
+            <tr>
+                <td style="border-bottom: 3px solid #808080; border-top: 3px solid #808080;"><b>Сумма заказа: </b></td>
+                <td th:text="${dishAmount}" style="border-bottom: 3px solid #808080; border-top: 3px solid #808080;"></td>
             </tr>
             <tr th:each="dish: ${dishes}">
                 <td th:text="${dish.name}" style="border-bottom: 3px solid #808080;"></td>

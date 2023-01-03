@@ -24,7 +24,7 @@ public class CourierController {
         );
     }
 
-    @PostMapping("/dismiss")
+    @PutMapping("/dismiss")
     public ResponseEntity<Void> dismissCourierById(@RequestParam int id) {
         simpleCourierService.dismissById(id);
         return new ResponseEntity<>(
@@ -32,7 +32,7 @@ public class CourierController {
         );
     }
 
-    @PostMapping("/hire")
+    @PutMapping("/hire")
     public ResponseEntity<Void> hireCourierById(@RequestParam int id) {
         simpleCourierService.hireById(id);
         return new ResponseEntity<>(

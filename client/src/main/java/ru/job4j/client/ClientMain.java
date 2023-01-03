@@ -15,5 +15,6 @@ public class ClientMain {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String psw = encoder.encode("password");
         System.out.println(psw);
+        System.out.println("http://localhost:8090/client/login");
     }
 }

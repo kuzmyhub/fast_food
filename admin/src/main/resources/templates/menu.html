@@ -35,8 +35,12 @@
         </a>
     </nav>
 
-    <div th:if="${delete == true}" style="padding-top: 20px">
+    <div th:if="${available == 'false'}" style="padding-top: 20px">
         <span><b style="color: #ff4d00; font-size: 25px">Блюдо удалено из меню</b></span>
+    </div>
+
+    <div th:if="${available == 'true'}" style="padding-top: 20px">
+        <span><b style="color: #138808; font-size: 25px">Блюдо добавлено в меню</b></span>
     </div>
 
     <div style="padding-top: 20px">
@@ -48,14 +52,14 @@
     </div>
 
     <div style="padding-top: 20px">
-        <table style="margin: auto" width="680" border="0">
+        <table style="margin: auto" width="800" border="0">
             <thead>
             <tr>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Наименование</th>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Описание</th>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Стоимость</th>
                 <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Фото</th>
-                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Удалить</th>
+                <th scope="col" height="50px" style="border-bottom: 3px solid #808080;">Исключить/Добавить</th>
             </tr>
             </thead>
             <tbody>
@@ -69,15 +73,24 @@
                     <img width="200" th:src="@{|/admin/dish/photo/${dish.id}|}">
                 </td>
                 <td style="border-bottom: 3px solid #808080;">
-                    <form th:action="@{/admin/dish/deleteDish}" method="post">
+                    <form th:action="@{/admin/dish/excludeDish}" th:if="${dish.available == true}" method="post">
                         <button type="submit" name="id" th:value="${dish.id}" class="btn btn-primary">
-                            -
+                            Исключить
+                        </button>
+                    </form>
+                    <form th:action="@{/admin/dish/enableDish}" th:if="${dish.available == false}" method="post">
+                        <button type="submit" name="id" th:value="${dish.id}" class="btn btn-primary">
+                            Добавить
                         </button>
                     </form>
                 </td>
             </tr>
             </tbody>
         </table>
+    </div>
+
+    <div>
+        <p></p>
     </div>
 
 </div>

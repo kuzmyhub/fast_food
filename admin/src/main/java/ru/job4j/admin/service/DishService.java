@@ -12,7 +12,9 @@ public interface DishService {
 
     Optional<Dish> findDishByName(String name);
 
-    boolean deleteDishById(int id);
+    boolean excludeDishById(int id);
+
+    boolean enableDishById(int id);
 
     List<Dish> findAll();
 }

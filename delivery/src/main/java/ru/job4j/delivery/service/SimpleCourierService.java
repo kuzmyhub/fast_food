@@ -18,7 +18,8 @@ public class SimpleCourierService implements CourierService {
 
     private CourierRepository courierRepository;
 
-    public Order setCourier(Order order) {
+    public Order setCourier(Order order) throws InterruptedException {
+        Thread.sleep(10000);
         Courier courier = chooseCourier();
         order.setCourier(courier);
         order.setStatus(Status.DELIVERED);

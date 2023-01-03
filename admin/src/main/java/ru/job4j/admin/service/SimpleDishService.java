@@ -26,8 +26,12 @@ public class SimpleDishService implements DishService {
         return Optional.of(dishAPIRepository.findByName(name));
     }
 
-    public boolean deleteDishById(int id) {
-        return dishAPIRepository.deleteById(id);
+    public boolean excludeDishById(int id) {
+        return dishAPIRepository.excludeById(id);
+    }
+
+    public boolean enableDishById(int id) {
+        return dishAPIRepository.enableById(id);
     }
 
     public List<Dish> findAll() {

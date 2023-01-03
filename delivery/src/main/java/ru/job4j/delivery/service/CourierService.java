@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface CourierService {
 
-    Order setCourier(Order order);
+    Order setCourier(Order order) throws InterruptedException;
 
     Courier chooseCourier();
 

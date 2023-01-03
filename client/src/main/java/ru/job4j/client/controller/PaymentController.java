@@ -10,6 +10,8 @@ import ru.job4j.client.service.PaymentService;
 import ru.job4j.domain.model.Order;
 import ru.job4j.domain.model.Payment;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.Optional;
 
@@ -34,8 +36,7 @@ public class PaymentController {
     }
 
     @GetMapping("/createPayment")
-    public String createPayment(@RequestParam(name = "id") int id,
-                                Model model, Principal principal) {
+    public String createPayment(@RequestParam(name = "id") int id) {
         Optional<Order> optionalOrder = simpleOrderService.findOrderById(id);
         if (optionalOrder.isEmpty()) {
             return "404";
@@ -43,8 +44,6 @@ public class PaymentController {
         Payment payment = new Payment();
         payment.setOrder(optionalOrder.get());
         simplePaymentService.save(payment);
-        model.addAttribute("username",
-                simpleCustomerService.getUsername(principal));
-        return "redirect:/client";
+        return "redirect:/client/basket/clearBasket";
     }
 }

@@ -21,4 +21,5 @@ public class Dish {
     private String description;
     private int cost;
     private byte[] photo;
+    private boolean available = true;
 }

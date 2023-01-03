@@ -6,6 +6,7 @@ import ru.job4j.dish.repository.DishRepository;
 import ru.job4j.domain.model.Dish;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Repository
@@ -26,8 +27,28 @@ public class SimpleDishService implements DishService {
         return dishRepository.findByName(name);
     }
 
-    public void deleteDishById(int id) {
-        dishRepository.deleteById(id);
+    public void excludeDishById(int id) {
+        Dish dish = findDishById(id).orElseThrow(
+                () -> new NoSuchElementException(
+                        String.format(
+                                "Dish id=%s not found", id
+                        )
+                )
+        );
+        dish.setAvailable(false);
+        addDish(dish);
+    }
+
+    public void enableDishById(int id) {
+        Dish dish = findDishById(id).orElseThrow(
+                () -> new NoSuchElementException(
+                        String.format(
+                                "Dish id=%s not found", id
+                        )
+                )
+        );
+        dish.setAvailable(true);
+        addDish(dish);
     }
 
     public List<Dish> findAll() {

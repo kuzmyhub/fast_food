@@ -19,7 +19,7 @@ public class CourierController {
     private CustomerService simpleCustomerService;
 
     @GetMapping("/couriers")
-    public String getCouriers(@RequestParam(name = "dismiss", required = false) boolean dismiss,
+    public String getCouriers(@RequestParam(name = "dismiss", required = false) String dismiss,
                               Model model, Principal principal) {
         model.addAttribute("couriers", simpleCourierService.findAll());
         model.addAttribute("dismiss", dismiss);
@@ -37,7 +37,7 @@ public class CourierController {
     @PostMapping("/hireCourier")
     public String hireCourier(@ModelAttribute("id") int id) {
         boolean isDismissed = simpleCourierService.hireById(id);
-        return "redirect:/admin/courier/couriers?dismiss=" + isDismissed;
+        return "redirect:/admin/courier/couriers?dismiss=" + !isDismissed;
     }
 
     @GetMapping("/formAddCourier")

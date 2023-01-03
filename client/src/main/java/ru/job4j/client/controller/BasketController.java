@@ -56,5 +56,15 @@ public class BasketController {
         return "redirect:/client/dish/menu";
     }
 
+    @GetMapping("/clearBasket")
+    public String clearBasket(HttpServletResponse response,
+                              Model model, Principal principal) {
+        Cookie cookie = new Cookie("basket", null);
+        cookie.setMaxAge(0);
+        response.addCookie(cookie);
+        model.addAttribute("username",
+                simpleCustomerService.getUsername(principal));
+        return "redirect:/client";
+    }
 }
 

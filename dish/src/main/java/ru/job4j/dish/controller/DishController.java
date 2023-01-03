@@ -55,9 +55,17 @@ public class DishController {
         );
     }
 
-    @DeleteMapping
-    public ResponseEntity<Void> deleteDish(@RequestParam int id) {
-        simpleDishService.deleteDishById(id);
+    @PutMapping("/exclude")
+    public ResponseEntity<Void> excludeDish(@RequestParam int id) {
+        simpleDishService.excludeDishById(id);
+        return new ResponseEntity<>(
+                HttpStatus.OK
+        );
+    }
+
+    @PutMapping("/enable")
+    public ResponseEntity<Void> enableDish(@RequestParam int id) {
+        simpleDishService.enableDishById(id);
         return new ResponseEntity<>(
                 HttpStatus.OK
         );

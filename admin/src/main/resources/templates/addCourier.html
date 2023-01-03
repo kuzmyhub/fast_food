@@ -21,11 +21,6 @@
 <div class="container pt-3" style="text-align: center;">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" th:href="@{/home}">Быстро и в точку</a>
-        <a class="navbar-brand" th:href="@{/admin/dish/menu}">Меню</a>
-    </nav>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" th:href="@{/admin}">Быстро и в точку</a>
         <a class="navbar-brand" th:href="@{/admin/dish/menu}">Меню</a>
         <a class="navbar-brand" th:href="@{/admin/courier/couriers}">Курьеры</a>
@@ -39,6 +34,18 @@
             <span> | Выйти</span>
         </a>
     </nav>
+
+    <div style="padding-top: 20px">
+        <form th:action="@{/admin/courier/addCourier}" method="post">
+            <div class="form-group">
+                <label><b>Имя</b></label>
+                <input type="text" class="form-control" name="name" id="name">
+                <label style="padding-top: 20px"><b>Номер телефона</b></label>
+                <input type="text" class="form-control" name="number" id="number">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Добавить</button>
+        </form>
+    </div>
 
 </div>
 </body>

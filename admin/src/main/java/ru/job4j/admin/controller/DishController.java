@@ -28,19 +28,25 @@ public class DishController {
     private CustomerService simpleCustomerService;
 
     @GetMapping("/menu")
-    public String menu(@RequestParam(name = "delete", required = false) boolean delete,
+    public String menu(@RequestParam(name = "available", required = false) String available,
                        Model model, Principal principal) {
         model.addAttribute("dishes", simpleDishService.findAll());
-        model.addAttribute("delete", delete);
+        model.addAttribute("available", available);
         model.addAttribute("username",
                 simpleCustomerService.getUsername(principal));
         return "menu";
     }
 
-    @PostMapping("/deleteDish")
-    public String deleteDish(@ModelAttribute(name = "id") int id) {
-        boolean isDeleted = simpleDishService.deleteDishById(id);
-        return "redirect:/admin/dish/menu?delete=" + isDeleted;
+    @PostMapping("/excludeDish")
+    public String excludeDish(@ModelAttribute(name = "id") int id) {
+        boolean isExcluded = simpleDishService.excludeDishById(id);
+        return "redirect:/admin/dish/menu?available=" + !isExcluded;
+    }
+
+    @PostMapping("/enableDish")
+    public String enableDish(@ModelAttribute(name = "id") int id) {
+        boolean isEnable = simpleDishService.enableDishById(id);
+        return "redirect:/admin/dish/menu?available=" + isEnable;
     }
 
     @GetMapping("/formAddDish")

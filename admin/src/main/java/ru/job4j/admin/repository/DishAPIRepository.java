@@ -44,10 +44,19 @@ public class DishAPIRepository {
         ).getBody();
     }
 
-    public boolean deleteById(int id) {
+    public boolean excludeById(int id) {
         return dishRestTemplate.exchange(
-                String.format("%s?id=%s", url, id),
-                HttpMethod.DELETE,
+                String.format("%s%s?id=%s", url, "/exclude", id),
+                HttpMethod.PUT,
+                HttpEntity.EMPTY,
+                Void.class
+        ).getStatusCode() != HttpStatus.NOT_FOUND;
+    }
+
+    public boolean enableById(int id) {
+        return dishRestTemplate.exchange(
+                String.format("%s%s?id=%s", url, "/enable", id),
+                HttpMethod.PUT,
                 HttpEntity.EMPTY,
                 Void.class
         ).getStatusCode() != HttpStatus.NOT_FOUND;
