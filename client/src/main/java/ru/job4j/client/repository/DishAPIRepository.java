@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Repository
 @PropertySource("classpath:application.properties")
-public class DishAPIRepository implements DishRepository{
+public class DishAPIRepository implements DishRepository {
 
     @Value("${dish-api-url}")
     private String url;

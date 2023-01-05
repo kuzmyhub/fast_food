@@ -16,5 +16,4 @@ public class SimpleKafkaProducerService implements KafkaProducerService {
         System.out.println("Заказ № " + order.getId() + " отправлен с сервиса кухни");
     }
 
-
 }

@@ -35,8 +35,9 @@ public class OrderController {
         return "addressForm";
     }
 
+    @SuppressWarnings("checkstyle:ParameterNumber")
     @PostMapping("/orderPreview")
-    public String formOrder(Principal principal, Model model,
+    public String formOrder(Model model,
                               @ModelAttribute(name = "dishIds") String ids,
                               @ModelAttribute(name = "street") String street,
                               @ModelAttribute(name = "house") String house,
@@ -55,8 +56,6 @@ public class OrderController {
         model.addAttribute("dishAmount", dishAmount);
         model.addAttribute("dishes", dishes);
         model.addAttribute("dishIds", ids);
-        model.addAttribute("username",
-                simpleCustomerService.getUsername(principal));
         return "orderPreview";
     }
 

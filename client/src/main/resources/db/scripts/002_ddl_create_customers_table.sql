@@ -1,4 +1,4 @@
-CREATE TABLE customers (
+CREATE TABLE IF NOT EXISTS customers (
   id serial primary key,
   username VARCHAR(50) NOT NULL unique,
   phone VARCHAR(11) NOT NULL unique,
