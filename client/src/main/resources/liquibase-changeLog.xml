@@ -10,4 +10,12 @@
     <include file="db/scripts/002_ddl_create_customers_table.sql" relativeToChangelogFile="true"/>
     <include file="db/scripts/003_dml_initialization_authorities_table.sql" relativeToChangelogFile="true"/>
     <include file="db/scripts/004_dml_initialization_customers_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/005_create_couriers_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/006_initialization_couriers_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/007_ddl_create_dish_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/008_dml_initialization_dish_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/009_ddl_create_notifications_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/010_ddl_create_order_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/011_ddl_create_order_dishes_table.sql" relativeToChangelogFile="true"/>
+    <include file="db/scripts/012_ddl_create_payments_table.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
