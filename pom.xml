@@ -4,12 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.job4j</groupId>
-    <artifactId>job4j_fast_food</artifactId>
+    <groupId>ru.fast_food</groupId>
+    <artifactId>fast_food</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>job4j_fast_food</name>
-    <url>http://job4j.ru</url>
+    <name>fast_food</name>
 
     <modules>
         <module>admin</module>

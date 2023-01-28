@@ -1,4 +1,4 @@
-package ru.job4j.kitchen.repository;
+package ru.kitchen.repository;
 
 import org.junit.jupiter.api.Test;
 
